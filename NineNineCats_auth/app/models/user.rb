@@ -25,7 +25,7 @@ class User < ApplicationRecord
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     return nil if user.nil?
-    is_password?(password) ? user : nil
+    user.is_password?(password) ? user : nil
   end
 
   def ensure_session_token
