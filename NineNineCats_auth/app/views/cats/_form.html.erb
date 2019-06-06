@@ -1,7 +1,7 @@
 <% action = (cat.persisted? ? cat_url(cat) : cats_url) %>
 <% method = (cat.persisted? ? :patch : :post) %>
 
-<form action="<%= action %>" method="post">
+<form action="<%= action %>" method="post" class="ui form">
   <input type="hidden" name="_method" value="<%= method %>">
 
   <label for="cat_name">Name</label>
@@ -54,5 +54,5 @@
   </label>
 
   <% submit_text = (cat.persisted? ? 'Update' : 'Create') + ' cat!' %>
-  <input type="submit" value="<%= submit_text %>">
+  <input type="submit" value="<%= submit_text %>" class="ui button green">
 </form>
