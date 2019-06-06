@@ -4,32 +4,37 @@
     <title>NinetyNineCats</title>
     <%= csrf_meta_tags %>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
 
-    <h1>99 Cats</h1>
+    <div class="ui container">
+      <h1>
+        <a href="<%= cats_url %>">99 Cats</a>
+      </h1>
 
-    <% if current_user %>
-      <p>Hello, <%= current_user.username %>!</p>
-    <% else %>
-      <p>Not currently logged in</p>
-    <% end %>
+      <% if current_user %>
+        <p>Hello, <%= current_user.username %>!</p>
+      <% else %>
+        <p>Not currently logged in</p>
+      <% end %>
 
-    <% if logged_in_user? %>
-      <form action="<%= session_url %>" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="Logout">
-      </form>
-    <% else %>
-      <a href="<%= new_user_url %>">Sign Up</a>
-      <br>
-      <a href="<%= new_session_url %>">Sign In</a>
-    <% end %>
+      <% if logged_in_user? %>
+        <form action="<%= session_url %>" method="POST" class="ui form">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Logout" class="ui button basic red">
+        </form>
+      <% else %>
+        <a href="<%= new_user_url %>" class="ui button basic blue">Sign Up</a>
+        <br><br>
+        <a href="<%= new_session_url %>" class="ui button basic blue">Sign In</a>
+      <% end %>
 
-    
-    <%= yield %>
+      
+      <%= yield %>
+    </div>
   </body>
 </html>

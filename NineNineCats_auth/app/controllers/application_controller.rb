@@ -14,7 +14,11 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in_user?
-    @current_user.session_token == session[:session_token] if @current_user
+    current_user.session_token == session[:session_token] if current_user
+  end
+
+  def redirect_if_logged_in
+    redirect_to cats_url if logged_in_user? 
   end
 
 end
